@@ -19,26 +19,54 @@ export default async function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <p className="text-4xl font-bold">Spotify</p>
-        <div className="grid grid-cols-2 gap-4">
+        <header data-cy="header" className="w-full">
+          <h1 data-cy="title" className="text-4xl font-bold">
+            Spotify
+          </h1>
+        </header>
+
+        <div className="w-full">
+          <input
+            data-cy="search-input"
+            type="text"
+            placeholder="Search albums..."
+            className="input input-bordered w-full max-w-md"
+          />
+        </div>
+
+        <div data-cy="album-grid" className="grid grid-cols-2 gap-4">
           {albums.map((album) => (
-            <div key={album.id} className="card w-64 bg-base-100 shadow-sm">
+            <div
+              key={album.id}
+              data-cy="album-card"
+              className="card w-64 bg-base-100 shadow-sm"
+            >
               <div className="card-body">
                 <span className="badge badge-xs badge-warning">Pop</span>
-                <h2 className="text-3xl font-bold">{album.name}</h2>
+
+                <h2 data-cy="album-title" className="text-3xl font-bold">
+                  {album.name}
+                </h2>
 
                 <p>ID: {album.id}</p>
+
                 <p>
                   Author:{" "}
-                  <Link href={`/author/${album.author_id}`}>
+                  <Link
+                    data-cy="album-author"
+                    href={`/author/${album.author_id}`}
+                  >
                     {album.author_name}
                   </Link>
                 </p>
-                <p>
+
+                <p data-cy="album-release-date">
                   Release Date: {new Date(album.release_date).toDateString()}
                 </p>
+
                 <div className="mt-6">
                   <Link
+                    data-cy="album-detail-link"
                     className="btn btn-primary btn-block"
                     href={`/album/${album.id}`}
                   >
@@ -50,6 +78,7 @@ export default async function Home() {
           ))}
         </div>
       </main>
+
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <p>Footer</p>
       </footer>
