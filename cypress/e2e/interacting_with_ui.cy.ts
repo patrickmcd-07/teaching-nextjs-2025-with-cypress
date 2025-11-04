@@ -6,9 +6,9 @@ describe('Album Catalog - Interactions', () => {
   it('looks for songs when searching via search bar', () => {
     cy.get('[data-cy="album-card"]').as('allAlbums');
     cy.get('@allAlbums').then(($all) => {
-      const total = $all.length;
-      cy.get('[data-cy="search-input"]').clear().type('a', { delay: 0 });
-      cy.get('[data-cy="album-card"]').its('length').should('be.lte', total);
+    const total = $all.length;
+    cy.get('[data-cy="search-input"]').clear().type('a', { delay: 0 });
+    cy.get('[data-cy="album-card"]').its('length').should('be.lte', total);
     });
   });
 

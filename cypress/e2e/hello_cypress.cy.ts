@@ -27,7 +27,7 @@ describe('Album Catalog - Basic Checks', () => {
   });
 
   it('filters albums when typing into search input', () => {
-  cy.get('[data-cy="album-card"]').then(($all) => {
+    cy.get('[data-cy="album-card"]').then(($all) => {
     const total = $all.length;
     cy.get('[data-cy="search-input"]').clear().type('a', { delay: 0 });
     cy.get('[data-cy="album-card"]').its('length').should('be.lte', total);
